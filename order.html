@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order - Angel Coffee Shop</title>
+        <link rel="stylesheet" href="projet.css">
+    </head>
+<body>
+    <header>
+        <h1>☕ Angel Coffee</h1>
+        <p>Place Your Order</p>
+    </header>
+
+    <section class="order-form">
+        <h2>Select Your Items</h2>
+        <form id="orderForm">
+            <div class="order-item">
+                <label>
+                    <input type="checkbox" name="black-coffee" value="3.00">
+                    Black Coffee - $3.00
+                    <input type="number" name="black-coffee-qty" min="0" value="0" placeholder="Qty">
+                </label>
+            </div>
+            <div class="order-item">
+                <label>
+                    <input type="checkbox" name="latte" value="5.00">
+                    Latte - $5.00
+                    <input type="number" name="latte-qty" min="0" value="0" placeholder="Qty">
+                </label>
+            </div>
+            <div class="order-item">
+                <label>
+                    <input type="checkbox" name="tea" value="1.00">
+                    Tea - $1.00
+                    <input type="number" name="tea-qty" min="0" value="0" placeholder="Qty">
+                </label>
+            </div>
+
+            <div class="customer-info">
+                <h3>Customer Information</h3>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="tel" name="phone" placeholder="Your Phone">
+            </div>
+
+            <button type="button" class="order-btn" onclick="sendOrderToWhatsApp()">Send Order via WhatsApp</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>📞 Contact Us: (010) 000-0000</p>
+        <p>&copy; 2026 Angel Coffee Shop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function sendOrderToWhatsApp() {
+            const form = document.getElementById('orderForm');
+            const formData = new FormData(form);
+
+            let message = "🛒 *New Order from Angel Coffee Shop*\n\n";
+
+            // Customer info
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+
+            message += `👤 *Customer Details:*\n`;
+            message += `Name: ${name}\n`;
+            message += `Email: ${email}\n`;
+            if (phone) message += `Phone: ${phone}\n\n`;
+
+            // Order items
+            message += `📋 *Order Items:*\n`;
+            let total = 0;
+            let hasItems = false;
+
+            // Black Coffee
+            const blackCoffeeChecked = form.querySelector('input[name="black-coffee"]').checked;
+            const blackCoffeeQty = parseInt(form.querySelector('input[name="black-coffee-qty"]').value) || 0;
+            if (blackCoffeeChecked && blackCoffeeQty > 0) {
+                const price = 3.00;
+                const itemTotal = price * blackCoffeeQty;
+                total += itemTotal;
+                message += `☕ Black Coffee x${blackCoffeeQty} = $${itemTotal.toFixed(2)}\n`;
+                hasItems = true;
+            }
+
+            // Latte
+            const latteChecked = form.querySelector('input[name="latte"]').checked;
+            const latteQty = parseInt(form.querySelector('input[name="latte-qty"]').value) || 0;
+            if (latteChecked && latteQty > 0) {
+                const price = 5.00;
+                const itemTotal = price * latteQty;
+                total += itemTotal;
+                message += `🥛 Latte x${latteQty} = $${itemTotal.toFixed(2)}\n`;
+                hasItems = true;
+            }
+
+            // Tea
+            const teaChecked = form.querySelector('input[name="tea"]').checked;
+            const teaQty = parseInt(form.querySelector('input[name="tea-qty"]').value) || 0;
+            if (teaChecked && teaQty > 0) {
+                const price = 1.00;
+                const itemTotal = price * teaQty;
+                total += itemTotal;
+                message += `🍵 Tea x${teaQty} = $${itemTotal.toFixed(2)}\n`;
+                hasItems = true;
+            }
+
+            if (!hasItems) {
+                alert('Please select at least one item to order.');
+                return;
+            }
+
+            message += `\n💰 *Total: $${total.toFixed(2)}*\n\n`;
+            message += `Please confirm this order and provide payment instructions. Thank you! ☕`;
+
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Replace with your actual WhatsApp business number (without + or spaces)
+            // Example: "201009556870" for +20 100 955 6870
+            const phoneNumber = "201009556870"; // YOUR WHATSAPP NUMBER
+
+            // Open WhatsApp
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>

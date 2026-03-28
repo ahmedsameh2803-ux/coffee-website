@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    color: #333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #8B4513 0%, #5C2E0F 100%);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 1.1em;
+    font-style: italic;
+    opacity: 0.95;
+}
+.menu {
+    padding: 50px 20px;
+    text-align: center;
+    background: white;
+}
+
+.menu h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: #8B4513;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.about {
+    padding: 50px 20px;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.about h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #8B4513;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.about p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: #555;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    color: #D2691E;
+    border-top: 3px solid #8B4513;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 0.95em;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    .menu h2, .about h2 {
+        font-size: 1.5em;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+.item {
+    background: white;
+    border: 2px solid #8B4513;
+    border-radius: 10px;
+    padding: 30px 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.item h3 {
+    color: #8B4513;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.item .price {
+    font-size: 1.5em;
+    color: #D2691E;
+    font-weight: bold;
+}
+
+.item:hover {
+    background: linear-gradient(135deg, #8B4513 0%, #5C2E0F 100%);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(139, 69, 19, 0.3);
+}
+
+.item:hover h3,
+.item:hover .price {
+    color: white;
+}
+
+.order-btn {
+    background: linear-gradient(135deg, #8B4513 0%, #5C2E0F 100%);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.order-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.5);
+}
+
+.order-btn:active {
+    transform: scale(0.98);
+}
+
+.order-btn-link {
+    text-decoration: none;
+}
+
+/* Order Form */
+.order-form {
+    padding: 50px 20px;
+    text-align: center;
+    background: white;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.order-form h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: #8B4513;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.order-item {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.order-item label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.1em;
+}
+
+.order-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.order-item input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.customer-info {
+    margin: 30px 0;
+    text-align: left;
+}
+
+.customer-info h3 {
+    color: #8B4513;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.customer-info input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
